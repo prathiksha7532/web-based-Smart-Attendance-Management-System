@@ -1,40 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard</title>
-<link rel="stylesheet" href="style.css">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Attendance</title>
 
+    <link rel="stylesheet" href="style.css">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+    <script defer src="script.js"></script>
+</head>
 <body>
 
-<h1>🎓 Smart Attendance Management System</h1>
-<h2>Dashboard</h2>
+<h1>📷 Face Attendance</h1>
 
-<div class="dashboard">
+<video id="video" width="640" height="480" autoplay muted></video>
 
-<div class="card">
-<h3>👤 Register Student</h3>
-<button onclick="location.href='register.html'">Open</button>
-</div>
+<br><br>
 
-<div class="card">
-<h3>👨‍🎓 View Students</h3>
-<button onclick="location.href='students.html'">Open</button>
-</div>
+<button id="startCamera">📷 Start Camera</button>
 
-<div class="card">
-<h3>📷 Face Attendance</h3>
-<button onclick="location.href='index.html'">Open</button>
-</div>
+<h2 id="status">Status: Waiting...</h2>
 
-<div class="card">
-<h3>📋 Attendance Records</h3>
-<button onclick="location.href='attendance.html'">Open</button>
-</div>
+<br><br>
 
-</div>
+<button onclick="location.href='dashboard.html'">⬅ Back to Dashboard</button>
+
+</body>
+</html>
 
 <br><br>
 
