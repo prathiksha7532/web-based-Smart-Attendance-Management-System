@@ -3,31 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Smart Attendance</title>
+    <title>Smart Attendance Management System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>🎓 Smart Attendance Management System</h1>
+<div class="login-box">
+    <h1>🎓 Smart Attendance Management System</h1>
+    <h3>Using Face Recognition</h3>
 
-<h2>Login</h2>
+    <input type="text" id="username" placeholder="Username"><br><br>
 
-<input type="text" id="username" placeholder="Username"><br><br>
+    <input type="password" id="password" placeholder="Password"><br><br>
 
-<input type="password" id="password" placeholder="Password"><br><br>
+    <button onclick="login()">Login</button>
 
-<button onclick="login()">Login</button>
+    <p id="message"></p>
+</div>
 
 <script>
-function login() {
-    var user = document.getElementById("username").value;
-    var pass = document.getElementById("password").value;
+function login(){
 
-    if(user === "admin" && pass === "admin123"){
-        window.location.href = "dashboard.html";
-    } else {
-        alert("Invalid Username or Password");
-    }
+let username=document.getElementById("username").value;
+let password=document.getElementById("password").value;
+
+if(username==="admin" && password==="admin123"){
+window.location.href="dashboard.html";
+}
+else{
+document.getElementById("message").innerHTML="❌ Invalid Username or Password";
+}
+
 }
 </script>
 
