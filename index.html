@@ -10,7 +10,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
     <script defer src="script.js"></script>
 </head>
-
 <body>
 
     <h1>🎓 Smart Attendance Management System</h1>
@@ -31,6 +30,25 @@
     <button id="takeAttendance">✅ Take Attendance</button>
 
     <h2 id="status">Status: Waiting...</h2>
+
+    <hr>
+
+    <h2>📋 Attendance Records</h2>
+
+    <table border="1" cellpadding="10" style="margin:auto; border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Department</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+
+        <tbody id="attendanceTable">
+        </tbody>
+    </table>
 
 </body>
 </html>
