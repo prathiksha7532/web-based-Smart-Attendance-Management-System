@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registered Students</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>👨‍🎓 Registered Students</h1>
+
+<table border="1" cellpadding="10" style="margin:auto;border-collapse:collapse;">
+<tr>
+<th>Student ID</th>
+<th>Name</th>
+<th>Department</th>
+</tr>
+
+<tbody id="studentTable">
+</tbody>
+
+</table>
+
+<br>
+
+<button onclick="location.href='dashboard.html'">⬅ Back to Dashboard</button>
+
+<script>
+
+let table=document.getElementById("studentTable");
+
+for(let i=0;i<localStorage.length;i++){
+
+let key=localStorage.key(i);
+
+let student=JSON.parse(localStorage.getItem(key));
+
+table.innerHTML+=`
+<tr>
+<td>${student.id}</td>
+<td>${student.name}</td>
+<td>${student.department}</td>
+</tr>
+`;
+
+}
+
+</script>
+
+</body>
+</html>
