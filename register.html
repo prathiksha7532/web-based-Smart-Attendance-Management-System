@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Student</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register Student</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <h1>👤 Register Student</h1>
@@ -16,12 +17,40 @@
 
 <input type="text" id="department" placeholder="Department"><br><br>
 
-<button>📷 Capture Face</button>
-<button>💾 Save Student</button>
+<button onclick="saveStudent()">💾 Save Student</button>
 
 <br><br>
 
 <button onclick="location.href='dashboard.html'">⬅ Back to Dashboard</button>
+
+<script>
+function saveStudent(){
+
+let id=document.getElementById("studentId").value;
+let name=document.getElementById("studentName").value;
+let dept=document.getElementById("department").value;
+
+if(id==""||name==""||dept==""){
+alert("Please fill all fields");
+return;
+}
+
+let student={
+id:id,
+name:name,
+department:dept
+};
+
+localStorage.setItem(id,JSON.stringify(student));
+
+alert("Student Registered Successfully!");
+
+document.getElementById("studentId").value="";
+document.getElementById("studentName").value="";
+document.getElementById("department").value="";
+
+}
+</script>
 
 </body>
 </html>
