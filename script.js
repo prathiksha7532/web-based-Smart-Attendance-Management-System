@@ -1,19 +1,19 @@
-document.addEventListener("DOMContentLoaded", function () {
+const video = document.getElementById("video");
+const startButton = document.getElementById("startCamera");
 
-    const registerBtn = document.querySelectorAll("button")[0];
-    const attendanceBtn = document.querySelectorAll("button")[1];
-    const viewBtn = document.querySelectorAll("button")[2];
+startButton.addEventListener("click", async () => {
 
-    registerBtn.onclick = function () {
-        alert("Student Registration Page (Coming Soon)");
-    };
+    await faceapi.nets.tinyFaceDetector.loadFromUri("models");
+    await faceapi.nets.faceLandmark68Net.loadFromUri("models");
+    await faceapi.nets.faceRecognitionNet.loadFromUri("models");
 
-    attendanceBtn.onclick = function () {
-        alert("Face Recognition Attendance (Coming Soon)");
-    };
-
-    viewBtn.onclick = function () {
-        alert("Attendance Records (Coming Soon)");
-    };
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then((stream) => {
+            video.srcObject = stream;
+        })
+        .catch((err) => {
+            alert("Camera access denied!");
+            console.log(err);
+        });
 
 });
