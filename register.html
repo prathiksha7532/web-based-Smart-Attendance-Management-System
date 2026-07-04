@@ -1,54 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register Student</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Student</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <h1>👤 Register Student</h1>
 
-<input type="text" id="studentId" placeholder="Student ID"><br><br>
+<div class="login-box">
 
-<input type="text" id="studentName" placeholder="Student Name"><br><br>
+<input type="text" id="studentId" placeholder="Student ID">
 
-<input type="text" id="department" placeholder="Department"><br><br>
+<input type="text" id="studentName" placeholder="Student Name">
 
-<button onclick="saveStudent()">💾 Save Student</button>
+<input type="text" id="department" placeholder="Department">
+
+<input type="text" id="year" placeholder="Year">
+
+<button onclick="saveStudent()">💾 Register Student</button>
 
 <br><br>
 
-<button onclick="location.href='dashboard.html'">⬅ Back to Dashboard</button>
+<button onclick="location.href='dashboard.html'">⬅ Back</button>
+
+<p id="message"></p>
+
+</div>
 
 <script>
 function saveStudent(){
 
 let id=document.getElementById("studentId").value;
 let name=document.getElementById("studentName").value;
-let dept=document.getElementById("department").value;
+let department=document.getElementById("department").value;
+let year=document.getElementById("year").value;
 
-if(id==""||name==""||dept==""){
-alert("Please fill all fields");
+if(id==""||name==""||department==""||year==""){
+document.getElementById("message").innerHTML="❌ Please fill all fields";
 return;
 }
 
 let student={
 id:id,
 name:name,
-department:dept
+department:department,
+year:year
 };
 
-localStorage.setItem(id,JSON.stringify(student));
+localStorage.setItem("student_"+id,JSON.stringify(student));
 
-alert("Student Registered Successfully!");
+document.getElementById("message").innerHTML="✅ Student Registered Successfully";
 
 document.getElementById("studentId").value="";
 document.getElementById("studentName").value="";
 document.getElementById("department").value="";
-
+document.getElementById("year").value="";
 }
 </script>
 
