@@ -11,12 +11,15 @@
 
 <h1>👨‍🎓 Registered Students</h1>
 
-<table border="1" cellpadding="10" style="margin:auto;border-collapse:collapse;">
+<table>
+<thead>
 <tr>
 <th>Student ID</th>
 <th>Name</th>
 <th>Department</th>
+<th>Year</th>
 </tr>
+</thead>
 
 <tbody id="studentTable">
 </tbody>
@@ -28,25 +31,26 @@
 <button onclick="location.href='dashboard.html'">⬅ Back to Dashboard</button>
 
 <script>
+const table = document.getElementById("studentTable");
 
-let table=document.getElementById("studentTable");
+for (let i = 0; i < localStorage.length; i++) {
 
-for(let i=0;i<localStorage.length;i++){
+    let key = localStorage.key(i);
 
-let key=localStorage.key(i);
+    if (key.startsWith("student_")) {
 
-let student=JSON.parse(localStorage.getItem(key));
+        let student = JSON.parse(localStorage.getItem(key));
 
-table.innerHTML+=`
-<tr>
-<td>${student.id}</td>
-<td>${student.name}</td>
-<td>${student.department}</td>
-</tr>
-`;
-
+        table.innerHTML += `
+        <tr>
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.department}</td>
+            <td>${student.year}</td>
+        </tr>
+        `;
+    }
 }
-
 </script>
 
 </body>
