@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>🎓 Smart Attendance Management System</h1>
+<h2>Dashboard</h2>
+
+<div class="dashboard">
+
+<div class="card">
+<h3>👤 Register Student</h3>
+<button onclick="location.href='register.html'">Open</button>
+</div>
+
+<div class="card">
+<h3>👨‍🎓 View Students</h3>
+<button onclick="location.href='students.html'">Open</button>
+</div>
+
+<div class="card">
+<h3>📷 Face Attendance</h3>
+<button onclick="location.href='index.html'">Open</button>
+</div>
+
+<div class="card">
+<h3>📋 Attendance Records</h3>
+<button onclick="location.href='attendance.html'">Open</button>
+</div>
+
+</div>
+
+<br><br>
+
+<button onclick="logout()">🚪 Logout</button>
+
+<script>
+function logout(){
+    alert("Logged out successfully!");
+    window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
