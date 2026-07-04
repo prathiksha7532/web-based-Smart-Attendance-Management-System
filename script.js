@@ -1,36 +1,34 @@
 const video = document.getElementById("video");
-const startButton = document.getElementById("startCamera");
+const status = document.getElementById("status");
 
 Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri("./models"),
     faceapi.nets.faceLandmark68Net.loadFromUri("./models"),
     faceapi.nets.faceRecognitionNet.loadFromUri("./models")
 ]).then(() => {
-    console.log("Models Loaded Successfully");
+    status.innerHTML = "✅ AI Models Loaded Successfully";
 });
 
-startButton.addEventListener("click", async () => {
+document.getElementById("startCamera").onclick = async function () {
 
-    const stream = await navigator.mediaDevices.getUserMedia({
-        video: true
-    });
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: true
+        });
 
-    video.srcObject = stream;
+        video.srcObject = stream;
+        status.innerHTML = "📷 Camera Started";
 
-    video.addEventListener("play", () => {
+    } catch (error) {
+        status.innerHTML = "❌ Camera Permission Denied";
+    }
 
-        setInterval(async () => {
+};
 
-            const detections = await faceapi.detectAllFaces(
-                video,
-                new faceapi.TinyFaceDetectorOptions()
-            ).withFaceLandmarks().withFaceDescriptors();
+document.getElementById("registerStudent").onclick = function () {
+    alert("👤 Student Registration - Coming Soon");
+};
 
-            console.clear();
-            console.log("Faces Detected:", detections.length);
-
-        }, 1000);
-
-    });
-
-});
+document.getElementById("takeAttendance").onclick = function () {
+    alert("✅ Attendance Marked - Coming Soon");
+};
