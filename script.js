@@ -1,49 +1,46 @@
 const video = document.getElementById("video");
 const status = document.getElementById("status");
 
-Promise.all([
-    faceapi.nets.tinyFaceDetector.loadFromUri("./models"),
-    faceapi.nets.faceLandmark68Net.loadFromUri("./models"),
-    faceapi.nets.faceRecognitionNet.loadFromUri("./models")
-]).then(() => {
-    status.innerHTML = "✅ AI Models Loaded Successfully";
-});
+async function loadModels() {
+    try {
+        await faceapi.nets.tinyFaceDetector.loadFromUri("./models");
+        await faceapi.nets.faceLandmark68Net.loadFromUri("./models");
+        await faceapi.nets.faceRecognitionNet.loadFromUri("./models");
 
-document.getElementById("startCamera").onclick = async () => {
+        if (status) {
+            status.innerHTML = "✅ AI Models Loaded Successfully";
+        }
+
+        console.log("Models loaded");
+    } catch (error) {
+        console.error(error);
+        if (status) {
+            status.innerHTML = "❌ Error Loading AI Models";
+        }
+    }
+}
+
+loadModels();
+
+async function startCamera() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({
             video: true
         });
 
         video.srcObject = stream;
-        status.innerHTML = "📷 Camera Started Successfully";
+
+        if (status) {
+            status.innerHTML = "📷 Camera Started";
+        }
 
     } catch (error) {
-        status.innerHTML = "❌ Camera Permission Denied";
+        alert("Camera permission denied.");
     }
-};
+}
 
-document.getElementById("registerStudent").onclick = () => {
+const startBtn = document.getElementById("startCamera");
 
-    const id = document.getElementById("studentId").value;
-    const name = document.getElementById("studentName").value;
-    const department = document.getElementById("department").value;
-
-    if (id === "" || name === "" || department === "") {
-        alert("Please fill all the fields.");
-        return;
-    }
-
-    status.innerHTML =
-        "👤 Student Registered: " +
-        name +
-        " (" +
-        id +
-        ") - " +
-        department;
-
-};
-
-document.getElementById("takeAttendance").onclick = () => {
-    status.innerHTML = "✅ Attendance Marked Successfully";
-};
+if (startBtn) {
+    startBtn.addEventListener("click", startCamera);
+}
