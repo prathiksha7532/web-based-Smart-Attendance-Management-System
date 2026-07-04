@@ -3,52 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Attendance Management System</title>
-
+    <title>Login - Smart Attendance</title>
     <link rel="stylesheet" href="style.css">
-
-    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
-    <script defer src="script.js"></script>
 </head>
 <body>
 
-    <h1>🎓 Smart Attendance Management System</h1>
-    <h3>Using Face Recognition</h3>
+<h1>🎓 Smart Attendance Management System</h1>
 
-    <video id="video" width="640" height="480" autoplay muted></video>
+<h2>Login</h2>
 
-    <br><br>
+<input type="text" id="username" placeholder="Username"><br><br>
 
-    <input type="text" id="studentId" placeholder="Enter Student ID"><br><br>
+<input type="password" id="password" placeholder="Password"><br><br>
 
-    <input type="text" id="studentName" placeholder="Enter Student Name"><br><br>
+<button onclick="login()">Login</button>
 
-    <input type="text" id="department" placeholder="Enter Department"><br><br>
+<script>
+function login() {
+    var user = document.getElementById("username").value;
+    var pass = document.getElementById("password").value;
 
-    <button id="startCamera">📷 Start Camera</button>
-    <button id="registerStudent">👤 Register Student</button>
-    <button id="takeAttendance">✅ Take Attendance</button>
-
-    <h2 id="status">Status: Waiting...</h2>
-
-    <hr>
-
-    <h2>📋 Attendance Records</h2>
-
-    <table border="1" cellpadding="10" style="margin:auto; border-collapse:collapse;">
-        <thead>
-            <tr>
-                <th>Student ID</th>
-                <th>Student Name</th>
-                <th>Department</th>
-                <th>Date</th>
-                <th>Time</th>
-            </tr>
-        </thead>
-
-        <tbody id="attendanceTable">
-        </tbody>
-    </table>
+    if(user === "admin" && pass === "admin123"){
+        window.location.href = "dashboard.html";
+    } else {
+        alert("Invalid Username or Password");
+    }
+}
+</script>
 
 </body>
 </html>
