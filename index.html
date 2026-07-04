@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Attendance Management System</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+    <script defer src="script.js"></script>
 </head>
+
 <body>
 
     <h1>🎓 Smart Attendance Management System</h1>
-    <h2>Using Face Recognition</h2>
+    <h3>Using Face Recognition</h3>
 
-    <p>Welcome to the Smart Attendance Management System.</p>
+    <video id="video" width="720" height="560" autoplay muted></video>
 
-    <button id="register">👤 Register Student</button>
-    <button id="attendance">📷 Take Attendance</button>
-    <button id="view">📋 View Attendance</button>
+    <br><br>
 
-    <script src="script.js"></script>
+    <button id="startCamera">Start Camera</button>
 
 </body>
 </html>
