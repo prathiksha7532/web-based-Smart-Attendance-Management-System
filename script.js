@@ -2,45 +2,61 @@ const video = document.getElementById("video");
 const status = document.getElementById("status");
 
 async function loadModels() {
-    try {
-        await faceapi.nets.tinyFaceDetector.loadFromUri("./models");
-        await faceapi.nets.faceLandmark68Net.loadFromUri("./models");
-        await faceapi.nets.faceRecognitionNet.loadFromUri("./models");
+    await faceapi.nets.tinyFaceDetector.loadFromUri("./models");
+    await faceapi.nets.faceLandmark68Net.loadFromUri("./models");
+    await faceapi.nets.faceRecognitionNet.loadFromUri("./models");
 
-        if (status) {
-            status.innerHTML = "✅ AI Models Loaded Successfully";
-        }
-
-        console.log("Models loaded");
-    } catch (error) {
-        console.error(error);
-        if (status) {
-            status.innerHTML = "❌ Error Loading AI Models";
-        }
-    }
+    status.innerHTML = "✅ AI Models Loaded Successfully";
 }
 
 loadModels();
 
 async function startCamera() {
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-            video: true
-        });
 
-        video.srcObject = stream;
+    const stream = await navigator.mediaDevices.getUserMedia({
+        video: true
+    });
 
-        if (status) {
-            status.innerHTML = "📷 Camera Started";
-        }
+    video.srcObject = stream;
 
-    } catch (error) {
-        alert("Camera permission denied.");
-    }
+    status.innerHTML = "📷 Camera Started";
+
 }
 
-const startBtn = document.getElementById("startCamera");
+document.getElementById("startCamera").addEventListener("click", startCamera);
 
-if (startBtn) {
-    startBtn.addEventListener("click", startCamera);
-}
+video.addEventListener("play", () => {
+
+    const canvas = faceapi.createCanvasFromMedia(video);
+
+    document.body.append(canvas);
+
+    const displaySize = {
+        width: video.width,
+        height: video.height
+    };
+
+    faceapi.matchDimensions(canvas, displaySize);
+
+    setInterval(async () => {
+
+        const detections = await faceapi
+            .detectAllFaces(
+                video,
+                new faceapi.TinyFaceDetectorOptions()
+            )
+            .withFaceLandmarks()
+            .withFaceDescriptors();
+
+        const resized = faceapi.resizeResults(detections, displaySize);
+
+        canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+
+        faceapi.draw.drawDetections(canvas, resized);
+        faceapi.draw.drawFaceLandmarks(canvas, resized);
+
+        status.innerHTML = "😊 Faces Detected: " + detections.length;
+
+    }, 100);
+
+});
